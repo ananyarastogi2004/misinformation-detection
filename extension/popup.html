@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClaimSense</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-badge">CS</div>
+      <div>
+        <div class="logo-name">ClaimSense</div>
+        <div class="logo-tagline">AI Fact Checker</div>
+      </div>
+    </div>
+    <button id="historyBtn" class="icon-btn" title="Recent checks">&#9776;</button>
+  </header>
+
+  <!-- ── Input ──────────────────────────────────────────── -->
+  <section class="input-section">
+    <textarea
+      id="inputText"
+      class="claim-input"
+      placeholder="Paste a claim or select text on any webpage…"
+      rows="3"
+      maxlength="500"
+    ></textarea>
+    <div class="input-footer">
+      <span id="charCount" class="char-count">0 / 500</span>
+      <button id="clearBtn" class="text-btn">Clear</button>
+    </div>
+    <button id="checkBtn" class="btn-primary">
+      <span id="btnLabel">Check Claim</span>
+      <span id="btnSpinner" class="spinner hidden"></span>
+    </button>
+  </section>
+
+  <!-- ── Empty state ────────────────────────────────────── -->
+  <div id="emptyState" class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <p>Select text on any page or<br>type a claim above to begin.</p>
+  </div>
+
+  <!-- ── Error ──────────────────────────────────────────── -->
+  <div id="errorBox" class="error-box hidden">
+    <span class="error-icon">⚠</span>
+    <span id="errorMsg">Could not connect to ClaimSense backend.</span>
+  </div>
+
+  <!-- ── Result ─────────────────────────────────────────── -->
+  <div id="resultSection" class="hidden">
+
+    <!-- Verdict card -->
+    <div class="verdict-card">
+      <div id="verdictBadge" class="verdict-badge">—</div>
+      <div class="verdict-meta">
+        <div class="conf-row">
+          <span class="conf-label">Confidence</span>
+          <span id="confValue" class="conf-value">0%</span>
+        </div>
+        <div class="conf-bar-bg">
+          <div id="confBar" class="conf-bar"></div>
+        </div>
+        <div id="verdictNote" class="verdict-note"></div>
+      </div>
+    </div>
+
+    <!-- Context row (emotion + sarcasm) -->
+    <div class="context-row">
+      <div class="ctx-pill" id="emotionPill">😐 neutral</div>
+      <div class="ctx-pill" id="sarcasmPill">✓ not sarcastic</div>
+      <div class="ctx-pill hidden" id="flagPill"></div>
+    </div>
+
+    <!-- Agreement bar -->
+    <div class="agreement-section">
+      <div class="section-label">Source agreement</div>
+      <div class="agree-bar-wrap">
+        <div id="agreeSupport" class="agree-seg agree-support" title="Supports"></div>
+        <div id="agreeNeutral" class="agree-seg agree-neutral" title="Neutral"></div>
+        <div id="agreeRefute"  class="agree-seg agree-refute"  title="Refutes"></div>
+      </div>
+      <div class="agree-legend">
+        <span><span class="dot dot-support"></span>Supports</span>
+        <span><span class="dot dot-neutral"></span>Neutral</span>
+        <span><span class="dot dot-refute"></span>Refutes</span>
+      </div>
+    </div>
+
+    <!-- AI Analysis (Gemini) -->
+    <details class="collapsible" open>
+      <summary class="section-label caret-label">AI Analysis (Gemini)</summary>
+      <div id="geminiBox" class="gemini-box"></div>
+      <div id="geminiSources" class="gemini-sources hidden"></div>
+    </details>
+
+    <!-- Evidence -->
+    <details class="collapsible" open>
+      <summary class="section-label caret-label">
+        Evidence <span id="evidenceCount" class="count-badge">0</span>
+      </summary>
+      <div id="evidenceList"></div>
+    </details>
+
+  </div>
+
+  <!-- ── History drawer ────────────────────────────────── -->
+  <div id="historyDrawer" class="history-drawer hidden">
+    <div class="history-header">
+      <span class="section-label">Recent checks</span>
+      <button id="clearHistoryBtn" class="text-btn danger">Clear</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
