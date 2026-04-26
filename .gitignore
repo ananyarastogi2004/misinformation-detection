@@ -43,3 +43,7 @@ data/embeddings/
 *.pt
 *.bin
 *.safetensors
+
+__init__.py
+
+claim_extractor_model/
