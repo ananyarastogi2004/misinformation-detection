@@ -1,0 +1,45 @@
+.env
+
+# Virtual environments
+venv/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+logs/
+*.log
+
+# Test and coverage
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+
+# Build / distribution
+dist/
+build/
+*.egg-info/
+
+# Local data caches
+data/cache/
+data/embeddings/
+
+# Large model binaries
+*.pt
+*.bin
+*.safetensors

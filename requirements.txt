@@ -1,0 +1,29 @@
+# ── Web framework ──────────────────────────────────────
+fastapi==0.110.0
+uvicorn==0.29.0
+
+# ── HTTP & env ─────────────────────────────────────────
+requests==2.31.0
+python-dotenv==1.0.1
+
+# ── Data validation ────────────────────────────────────
+pydantic==2.6.4
+
+# ── Numerics ───────────────────────────────────────────
+numpy==1.26.4
+
+# ── Local DeBERTa claim detector (claim_extractor.py) ──
+# torch + transformers are REQUIRED, not optional.
+# The old requirements.txt had neither of these listed.
+torch==2.2.2
+transformers==4.40.1
+sentencepiece==0.2.0          # DeBERTa tokenizer needs this
+
+# ── FAISS semantic ranking (ranking_service.py) ────────
+# Was incorrectly marked as "optional" — it is required.
+faiss-cpu==1.8.0
+sentence-transformers==2.6.1
+
+# ── Removed (unused) ───────────────────────────────────
+# scikit-learn  — grep found zero usage in any .py file
+# python-dateutil — datetime.fromisoformat() used instead (stdlib)
