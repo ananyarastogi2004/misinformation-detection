@@ -31,7 +31,7 @@ class Settings:
     # (search grounding adds ~5–10s latency on top of generation).
     # HF cold-start can also take 20s on free tier.
     # Set to 30s for HF calls; Gemini service uses its own 30s timeout.
-    REQUEST_TIMEOUT: int = 30
+    REQUEST_TIMEOUT: int = 45
 
     # ── Evidence limits ───────────────────────────────────────────────
     MAX_EVIDENCE: int = 10          # raised from 5; pipeline still uses top-5

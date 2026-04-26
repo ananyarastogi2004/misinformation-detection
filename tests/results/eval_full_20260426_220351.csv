@@ -1,0 +1,6 @@
+id,text,ground_truth,raw_verdict,predicted_macro,confidence,correct,category,difficulty,temporal,sarcasm_detected,gemini_used,gemini_available
+T01,India is the most populous country in the world.,TRUE,UNCERTAIN,UNCERTAIN,0.0392,False,demographics,medium,True,False,True,True
+T02,The Great Wall of China is visible from space with the naked eye.,FALSE,FALSE,FALSE,0.6527,True,science,easy,False,False,True,True
+T03,Water boils at 100 degrees Celsius at sea level.,TRUE,TRUE,TRUE,0.5825,True,science,easy,False,False,True,True
+T04,The COVID-19 vaccine contains microchips to track people.,FALSE,FALSE,FALSE,0.7451,True,health_misinformation,easy,False,False,True,True
+T05,India launched the Chandrayaan-3 mission to the Moon in 2023.,TRUE,LIKELY TRUE,TRUE,0.3559,True,science_technology,easy,False,False,True,True

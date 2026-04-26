@@ -1,0 +1,51 @@
+id,text,ground_truth,raw_verdict,predicted_macro,confidence,correct,category,difficulty,temporal,sarcasm_detected,gemini_used,gemini_available
+T01,India is the most populous country in the world.,TRUE,UNCERTAIN,UNCERTAIN,0.0392,False,demographics,medium,True,False,True,True
+T02,The Great Wall of China is visible from space with the naked eye.,FALSE,FALSE,FALSE,0.652,True,science,easy,False,False,True,True
+T03,Water boils at 100 degrees Celsius at sea level.,TRUE,TRUE,TRUE,0.5835,True,science,easy,False,False,True,True
+T04,The COVID-19 vaccine contains microchips to track people.,FALSE,FALSE,FALSE,0.7451,True,health_misinformation,easy,False,False,True,True
+T05,India launched the Chandrayaan-3 mission to the Moon in 2023.,TRUE,LIKELY TRUE,TRUE,0.3551,True,science_technology,easy,False,False,True,True
+T06,The Amazon river is the longest river in the world.,FALSE,FALSE,FALSE,0.57,True,geography,medium,False,False,True,True
+T07,Albert Einstein failed mathematics in school.,FALSE,LIKELY FALSE,FALSE,0.3325,True,history,easy,False,False,True,True
+T08,India became a member of the United Nations in 1945.,TRUE,TRUE,TRUE,0.6687,True,history,medium,False,False,True,True
+T09,5G technology causes cancer.,FALSE,FALSE,FALSE,0.7133,True,health_misinformation,easy,False,False,True,True
+T10,The human body has 206 bones.,TRUE,TRUE,TRUE,0.6612,True,science,easy,False,False,True,True
+T11,India won the ICC Cricket World Cup in 2023.,FALSE,LIKELY FALSE,FALSE,0.2977,True,sports,easy,False,False,True,True
+T12,The Paris Agreement was signed in 2015.,TRUE,UNCERTAIN,UNCERTAIN,0.0156,False,environment_policy,easy,False,False,True,True
+T13,Elon Musk acquired Twitter and rebranded it to X.,TRUE,TRUE,TRUE,0.8155,True,technology,easy,False,False,True,True
+T14,Drinking eight glasses of water per day is a scientific recommendation.,FALSE,FALSE,FALSE,0.6327,True,health,medium,False,False,True,True
+T15,"India's GST was implemented on July 1, 2017.",TRUE,TRUE,TRUE,0.717,True,india_policy,medium,False,False,True,True
+F01,The moon landing in 1969 was staged by NASA in a Hollywood studio.,FALSE,LIKELY FALSE,FALSE,0.3325,True,conspiracy,easy,False,False,True,True
+F02,"Mahatma Gandhi was born in Gujarat on October 2, 1869.",TRUE,NOT_A_CLAIM,NOT_A_CLAIM,0.9164454340934753,False,history,easy,False,False,False,True
+F03,Mount Everest is located in China.,FALSE,UNCERTAIN,UNCERTAIN,0.0349,False,geography,medium,False,False,True,True
+F04,The Reserve Bank of India was established in 1935.,TRUE,UNCERTAIN,UNCERTAIN,0.0,False,india_economy,easy,False,False,False,True
+F05,India has never won a gold medal at the Olympics.,FALSE,TIMEOUT,UNCERTAIN,0.0,False,sports,easy,False,False,False,True
+F06,WhatsApp is owned by Google.,FALSE,LIKELY FALSE,FALSE,0.2643,True,technology,easy,False,False,False,True
+F07,The Indian Constitution is the longest written constitution in the world.,TRUE,LIKELY TRUE,TRUE,0.3839,True,india_polity,medium,False,False,False,True
+F08,Sugar causes hyperactivity in children.,FALSE,LIKELY FALSE,FALSE,0.379,True,health_misinformation,medium,False,False,False,True
+F09,India's first Prime Minister was Sardar Vallabhbhai Patel.,FALSE,NOT_A_CLAIM,NOT_A_CLAIM,0.990557074546814,False,india_history,easy,False,False,False,True
+F10,The United States has 52 states.,FALSE,LIKELY TRUE,TRUE,0.3371,False,geography,easy,False,False,False,True
+F11,Vitamin C cures the common cold.,FALSE,LIKELY FALSE,FALSE,0.3202,True,health,medium,False,False,False,True
+F12,India is the second largest exporter of software services in the world.,TRUE,UNCERTAIN,UNCERTAIN,0.0,False,india_economy,medium,True,False,False,True
+F13,"The Earth is approximately 6,000 years old.",FALSE,LIKELY FALSE,FALSE,0.2739,True,science,easy,False,False,False,True
+F14,ISRO was founded by Vikram Sarabhai.,TRUE,TIMEOUT,UNCERTAIN,0.0,False,india_science,easy,False,False,False,True
+F15,The Great Barrier Reef is located off the coast of New Zealand.,FALSE,UNCERTAIN,UNCERTAIN,0.0,False,geography,easy,False,False,False,True
+U01,Artificial intelligence will replace most human jobs within ten years.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,technology_prediction,hard,True,False,False,True
+U02,India's economy will surpass that of the United States by 2075.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,economics_prediction,hard,True,False,False,True
+U03,USA and Israel attacked Iran.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,geopolitics,hard,True,False,False,True
+U04,Screen time causes depression in teenagers.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,health,medium,False,False,False,True
+U05,Coffee is good for your health.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,health,medium,False,False,False,True
+U06,India's unemployment rate is rising.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,india_economy,hard,True,False,False,True
+U07,Bitcoin will become the global reserve currency.,UNCERTAIN,LIKELY TRUE,TRUE,0.3847,False,finance_prediction,hard,True,False,False,True
+U08,Remote work increases employee productivity.,UNCERTAIN,TIMEOUT,UNCERTAIN,0.0,True,workplace,medium,False,False,False,True
+U09,Climate change is causing more frequent cyclones in the Bay of Bengal.,UNCERTAIN,UNCERTAIN,UNCERTAIN,0.0,True,environment,hard,True,False,False,True
+U10,Nuclear energy is safer than coal energy.,UNCERTAIN,LIKELY TRUE,TRUE,0.276,False,energy_policy,medium,False,False,False,True
+S01,"Oh great, another politician promising to fix inflation — because that always wo…",NON_FACTUAL,NON_FACTUAL,NON_FACTUAL,0.0,True,sarcasm,easy,False,True,False,True
+S02,Yeah because banning smartphones is totally going to solve all of society's prob…,NON_FACTUAL,NOT_A_CLAIM,NOT_A_CLAIM,0.994174063205719,False,sarcasm,easy,False,False,False,True
+S03,"Sure, I am sure eating junk food every day is perfectly healthy, said no doctor …",NON_FACTUAL,TIMEOUT,UNCERTAIN,0.0,False,sarcasm,medium,False,False,False,True
+S04,Because obviously giving tax cuts to billionaires solves poverty.,NON_FACTUAL,UNCERTAIN,UNCERTAIN,0.0,False,sarcasm,medium,False,False,False,True
+S05,"Wow, what a surprise that the richest man in the room has the most to say about …",NON_FACTUAL,UNCERTAIN,UNCERTAIN,0.0,False,sarcasm,medium,False,False,False,True
+N01,Do you think artificial intelligence is dangerous?,NOT_A_CLAIM,NOT_A_CLAIM,NOT_A_CLAIM,0.9998737573623657,True,question,easy,False,False,False,True
+N02,I personally believe that India has the best food in the world.,NOT_A_CLAIM,NOT_A_CLAIM,NOT_A_CLAIM,0.9996892213821411,True,opinion,easy,False,False,False,True
+N03,"Good morning everyone, hope you have a great day!",NOT_A_CLAIM,NOT_A_CLAIM,NOT_A_CLAIM,0.9998509883880615,True,greeting,easy,False,False,False,True
+N04,The government should reduce taxes to boost economic growth.,NOT_A_CLAIM,NOT_A_CLAIM,NOT_A_CLAIM,0.9989820122718811,True,opinion_policy,medium,False,False,False,True
+N05,"In my opinion, Sachin Tendulkar is the greatest cricketer of all time.",NOT_A_CLAIM,NOT_A_CLAIM,NOT_A_CLAIM,0.9992979764938354,True,opinion,easy,False,False,False,True
