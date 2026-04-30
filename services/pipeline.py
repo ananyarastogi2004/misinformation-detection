@@ -20,13 +20,13 @@ def _five_class_verdict(score: float) -> str:
 
 def _parse_gemini(text: str):
     t = text.lower()
-    if "verdict: true"      in t: gem_v, gem_c = "TRUE",      0.85
-    elif "verdict: false"   in t: gem_v, gem_c = "FALSE",     0.85
+    if "verdict: true"        in t: gem_v, gem_c = "TRUE",      0.85
+    elif "verdict: false"     in t: gem_v, gem_c = "FALSE",     0.85
     elif "verdict: uncertain" in t: gem_v, gem_c = "UNCERTAIN", 0.50
-    else:                          gem_v, gem_c = "UNCERTAIN", 0.40
+    else:                           gem_v, gem_c = "UNCERTAIN", 0.40
 
-    if "confidence: high" in t:   gem_c = min(gem_c + 0.10, 0.95)
-    elif "confidence: low" in t:  gem_c = max(gem_c - 0.15, 0.20)
+    if "confidence: high" in t:  gem_c = min(gem_c + 0.10, 0.95)
+    elif "confidence: low" in t: gem_c = max(gem_c - 0.15, 0.20)
     return gem_v, gem_c
 
 
@@ -111,13 +111,14 @@ class FactCheckPipeline:
         if disable == "agreement":
             agreement = {"supports": 0, "refutes": 0, "neutral": 0,
                          "agreement_score": 0.0, "controversy_score": 0.0}
-            ag_score = 0.0
+            ag_score    = 0.0
+            controversy = 0.0
         else:
-            agreement    = agreement_service.analyze(
+            agreement   = agreement_service.analyze(
                 verification.get("evidence", ranked_evidence)
             )
-            ag_score     = agreement.get("agreement_score", 0.0)
-            controversy  = agreement.get("controversy_score", 0.0)
+            ag_score    = agreement.get("agreement_score", 0.0)
+            controversy = agreement.get("controversy_score", 0.0)
 
         # ── Step 8: Gemini (optional — ablation) ─────────────────────
         if disable == "gemini":
@@ -139,6 +140,33 @@ class FactCheckPipeline:
             else:
                 gem_score = 0.0
 
+        # ── NEW: No-signal fallback ───────────────────────────────────
+        # Triggered when NLI is disabled AND Gemini is also unavailable.
+        # In this state only Agreement remains (weight 0.40) but Agreement
+        # is a modifier signal — it cannot independently generate a verdict.
+        # Returning UNCERTAIN here is more honest than computing a
+        # near-zero score that would produce a random 5-class verdict.
+        # This was confirmed by the ablation study: without both NLI and
+        # Gemini, all 18 affected claims collapsed to UNCERTAIN anyway.
+        if disable == "nli" and gem_score == 0.0:
+            return {
+                "input":    text,
+                "verdict":  "UNCERTAIN",
+                "confidence": 0.0,
+                "time_aware": False,
+                "note": "No primary verification signal available.",
+                "context":  context,
+                "evidence": ranked_evidence,
+                "agreement": agreement,
+                "gemini_analysis": gemini_result,
+                "ablation_disabled": disable,
+                "fusion_weights": {"nli": 0.00, "gemini": 0.60, "agreement": 0.40},
+                "explanation": (
+                    "UNCERTAIN: NLI disabled and Gemini unavailable — "
+                    "Agreement alone cannot generate a verdict."
+                )
+            }
+
         # ── Step 9: Hybrid fusion with ablation weights ───────────────
         if disable == "gemini":
             w_nli, w_gem, w_ag = 0.65, 0.00, 0.35
@@ -149,7 +177,6 @@ class FactCheckPipeline:
         else:
             w_nli, w_gem, w_ag = 0.45, 0.35, 0.20
 
-        controversy = agreement.get("controversy_score", 0.0)
         final_score = (
             w_nli * nli_score +
             w_gem * gem_score +
@@ -160,17 +187,17 @@ class FactCheckPipeline:
         final_confidence = round(min(abs(final_score), 1.0), 4)
 
         return {
-            "input":          text,
-            "verdict":        final_verdict,
-            "confidence":     final_confidence,
-            "time_aware":     verification.get("time_aware", False),
-            "note":           verification.get("note", ""),
-            "context":        context,
-            "evidence":       verification.get("evidence", []),
-            "agreement":      agreement,
+            "input":           text,
+            "verdict":         final_verdict,
+            "confidence":      final_confidence,
+            "time_aware":      verification.get("time_aware", False),
+            "note":            verification.get("note", ""),
+            "context":         context,
+            "evidence":        verification.get("evidence", []),
+            "agreement":       agreement,
             "gemini_analysis": gemini_result,
             "ablation_disabled": disable,
-            "fusion_weights": {"nli": w_nli, "gemini": w_gem, "agreement": w_ag},
+            "fusion_weights":  {"nli": w_nli, "gemini": w_gem, "agreement": w_ag},
             "explanation": (
                 f"Hybrid fusion — NLI({w_nli:.0%}) + "
                 f"Gemini({w_gem:.0%}) + Agreement({w_ag:.0%})"
