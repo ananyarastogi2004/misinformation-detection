@@ -47,3 +47,12 @@ data/embeddings/
 __init__.py
 
 claim_extractor_model/
+
+node_modules/
+
+ClaimSense_IEEE_Paper.docx
+ClaimSense_Major_Report.docx
+report.js
+rp.js
+package-lock.json
+package.json
