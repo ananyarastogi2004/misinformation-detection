@@ -574,18 +574,6 @@ fake-news-detector/
 
 ---
 
-## 📖 Research Paper
-
-This project was submitted as a Minor Project research paper at IGDTUW (December 2025) and extended into a Major Project (May 2026).
-
-**Paper title:** *ClaimSense: AI-Powered Cross-Platform System for Detecting Misinformation in Online Content*
-
-**Authors:** Ananya Atri, Ananya Rastogi, Ashmita Sharma, Ishika
-
-**Institution:** Department of Artificial Intelligence and Data Sciences, Indira Gandhi Delhi Technical University for Women, Delhi
-
----
-
 ## 📄 License
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for details.
